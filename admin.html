@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin | Registered Users</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    td {
+      background-color: #f8f9fa;
+    }
+    .btn-back {
+      background-color: #28a745;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Registered Users</h2>
+    <table id="usersTable">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </table>
+    <button class="btn-back" onclick="goBack()">Back to Dashboard</button>
+  </div>
+
+  <script>
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.length === 0) {
+      document.getElementById("usersTable").innerHTML += `
+        <tr><td colspan="2">No users registered yet.</td></tr>`;
+    } else {
+      users.forEach((user) => {
+        document.getElementById("usersTable").innerHTML += `
+          <tr>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+          </tr>`;
+      });
+    }
+
+    function goBack() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>
