@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Register | User Authentication</title>
+  <title>Register | User Auth</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/545/545682.png">
 </head>
 <body>
   <div class="card">
-    <h2>Register</h2>
+    <h2 style="margin-bottom: 20px;">✨ Create Account</h2>
     <input type="text" id="name" placeholder="Full Name" required />
-    <input type="email" id="email" placeholder="Email" required />
+    <input type="email" id="email" placeholder="Email Address" required />
     <input type="password" id="password" placeholder="Password" required />
     <button onclick="register()">Register</button>
     <a href="login.html">Already have an account? Login</a>
@@ -20,23 +21,21 @@
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-
       if (!name || !email || !password) {
         alert("Please fill all fields!");
         return;
       }
 
       const users = JSON.parse(localStorage.getItem("users")) || [];
-
-      const userExists = users.some((u) => u.email === email);
-      if (userExists) {
+      const exists = users.some(u => u.email === email);
+      if (exists) {
         alert("Email already registered!");
         return;
       }
 
       users.push({ name, email, password });
       localStorage.setItem("users", JSON.stringify(users));
-      alert("Registration successful! Please login.");
+      alert("Registered successfully!");
       window.location.href = "login.html";
     }
   </script>
